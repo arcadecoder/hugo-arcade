@@ -15,8 +15,12 @@
                 <ul class="posts-list">
                     {{ range .Pages }}
                         <li class="post-item">
-                            <a href="{{.Permalink}}">
+                            {{ if isset .Params "link"}}
+                                <a href="{{ .Params.link }}" target="_blank">{{ .Params.Title }}</a><span>&#8599;</span>
+                            {{ else }}
+                                <a href="{{.Permalink}}">
                                 <span class="post-title">{{.Title}}</span>
+                            {{ end }}
                                 <span class="post-day">
                                     {{ if .Site.Params.dateformShort }}
                                         {{ .Date.Format .Site.Params.dateformShort }}
